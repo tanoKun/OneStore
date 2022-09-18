@@ -131,12 +131,6 @@
             <version>1.18.2-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.18.2-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>jp.jyn</groupId>
             <artifactId>Jecon</artifactId>
             <version>2.2.1</version>
@@ -173,6 +167,11 @@
             <groupId>de.studiocode.invui</groupId>
             <artifactId>InvUI</artifactId>
             <version>0.8-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>net.objecthunter</groupId>
+            <artifactId>exp4j</artifactId>
+            <version>0.4.8</version>
         </dependency>
     </dependencies>
 </project>
