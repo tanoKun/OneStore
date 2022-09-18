@@ -31,6 +31,10 @@ class OneStore : JavaPlugin() {
     }
 
     override fun onDisable() {
+        shopManager.shops.forEach {
+            db.saveShop(it.value)
+        }
+
         db.close()
 }
 
