@@ -1,4 +1,4 @@
-package com.github.tanokun.onestore.shop.inv.list.items
+package com.github.tanokun.onestore.shop.inv.items
 
 import de.studiocode.invui.gui.impl.PagedGUI
 import de.studiocode.invui.item.ItemProvider

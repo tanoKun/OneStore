@@ -1,7 +1,7 @@
-package com.github.tanokun.onestore.shop.inv.list
+package com.github.tanokun.onestore.shop.inv
 
-import com.github.tanokun.onestore.shop.inv.list.items.BackItem
-import com.github.tanokun.onestore.shop.inv.list.items.ForwardItem
+import com.github.tanokun.onestore.shop.inv.items.BackItem
+import com.github.tanokun.onestore.shop.inv.items.ForwardItem
 import com.github.tanokun.onestore.shopManager
 import com.github.tanokun.onestore.util.inv.Inv
 import de.studiocode.invui.gui.GUI

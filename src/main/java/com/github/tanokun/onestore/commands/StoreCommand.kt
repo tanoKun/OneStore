@@ -2,7 +2,7 @@ package com.github.tanokun.onestore.commands
 
 import com.github.tanokun.onestore.db
 import com.github.tanokun.onestore.shop.Shop
-import com.github.tanokun.onestore.shop.inv.list.ShopListInv
+import com.github.tanokun.onestore.shop.inv.ShopListInv
 import com.github.tanokun.onestore.shopManager
 import dev.jorel.commandapi.CommandAPICommand
 import dev.jorel.commandapi.CommandPermission
