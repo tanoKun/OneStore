@@ -1,7 +1,9 @@
 # OneStore
 
 自動で売値、買値を調節してくれるShopPL<br>
-minecraft v1.18.2
+minecraft v1.18.2<br>
+
+###authors: tanokun
 
 ## Depend (Plugin)
  - CommandAPI 
