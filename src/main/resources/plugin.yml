@@ -2,5 +2,5 @@ name: OneStore
 version: '${project.version}'
 main: com.github.tanokun.onestore.OneStore
 api-version: 1.13
-depend: [ CommandAPI, Jecon, HolographicDisplays ]
+depend: [ CommandAPI, Jecon ]
 authors: [ tanokun ]
