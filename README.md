@@ -16,7 +16,7 @@ minecraft v1.18.2<br>
  - **InvUI** 0.8
  - **exp4j** 0.4.8
 
-### Commands
+## Commands
 - **/ostore create {id} {元価格} {ストック} {変化幅}** 
 - **/ostore delete {id}**
 - **/ostore list**
