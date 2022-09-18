@@ -31,7 +31,13 @@ class ShopListInv(player: Player) : Inv("§e§lストア一覧", player) {
                         " ",
                         "§7ID: §b${it.value.id}",
                         "§7基本価格: §b${it.value.basePrice}",
+                        "§7買値: §b${it.value.buyPrice}",
+                        "§7売値: §b${it.value.sellPrice}",
                         "§7在庫: §b${it.value.stock}",
+                        "§7変化幅: §b${it.value.change}",
+                        "  ",
+                        "§7式(減法): §b${it.value.sellExpressionSubtract}",
+                        "§7式(加法): §b${it.value.sellExpressionPlus}",
                     )
             ))
         }
