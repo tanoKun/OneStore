@@ -14,8 +14,9 @@ import de.studiocode.invui.item.impl.SimpleItem
 import de.studiocode.invui.window.impl.single.SimpleWindow
 import org.bukkit.Material
 import org.bukkit.entity.Player
+import kotlin.math.roundToInt
 
-class ShopListInv(player: Player) : Inv("§e§lストア一覧", player) {
+class ShopListInv(player: Player): Inv("§e§lストア一覧", player) {
 
     private val border = SimpleItem(ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"))
 
@@ -31,13 +32,15 @@ class ShopListInv(player: Player) : Inv("§e§lストア一覧", player) {
                         " ",
                         "§7ID: §b${it.value.id}",
                         "§7基本価格: §b${it.value.basePrice}",
-                        "§7買値: §b${it.value.buyPrice}",
-                        "§7売値: §b${it.value.sellPrice}",
+                        "§7買値: §b${it.value.buyPrice.roundToInt()}",
+                        "§7売値: §b${it.value.sellPrice.roundToInt()}",
                         "§7在庫: §b${it.value.stock}",
                         "§7変化幅: §b${it.value.change}",
+                        "§7変動までの差: §b${it.value.difference}",
+                        "§7一括できるか: §b${it.value.increase}",
                         "  ",
-                        "§7式(減法): §b${it.value.sellExpressionSubtract}",
-                        "§7式(加法): §b${it.value.sellExpressionPlus}",
+                        "§7式(減法): §b${it.value.expressionSubtract}",
+                        "§7式(加法): §b${it.value.expressionPlus}",
                     )
             ))
         }
