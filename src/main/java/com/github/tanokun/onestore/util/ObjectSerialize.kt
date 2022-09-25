@@ -1,5 +1,6 @@
 package com.github.tanokun.onestore.util
 
+import org.bukkit.Location
 import org.bukkit.inventory.ItemStack
 import org.bukkit.util.io.BukkitObjectInputStream
 import org.bukkit.util.io.BukkitObjectOutputStream
@@ -25,6 +26,29 @@ fun itemStackFromBase64(data: String): ItemStack {
     dataInput.readInt()
 
     val item = dataInput.readObject() as ItemStack
+
+    dataInput.close()
+    return item
+}
+
+fun locationToBase64(location: Location): String {
+    val outputStream = ByteArrayOutputStream()
+    val dataOutput = BukkitObjectOutputStream(outputStream)
+
+    dataOutput.writeInt(1)
+    dataOutput.writeObject(location)
+
+    dataOutput.close()
+    return Base64Coder.encodeLines(outputStream.toByteArray())
+
+}
+
+fun locationFromBase64(data: String): Location {
+    val inputStream = ByteArrayInputStream(Base64Coder.decodeLines(data))
+    val dataInput = BukkitObjectInputStream(inputStream)
+    dataInput.readInt()
+
+    val item = dataInput.readObject() as Location
 
     dataInput.close()
     return item
