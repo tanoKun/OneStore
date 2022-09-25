@@ -3,11 +3,11 @@
 自動で売値、買値を調節してくれるShopPL<br>
 minecraft v1.18.2<br>
 
-### authors: tanokun
+### authors: [tanokun](https://github.com/tanoKun)
 
 ## Depend (Plugin)
- - CommandAPI 
- - Jecon
+ - [CommandAPI](https://github.com/JorelAli/CommandAPI)
+ - [Jecon](https://github.com/HimaJyun/Jecon)
 
 ## Libraries
  - **Jecon** 2.2.1
@@ -20,16 +20,16 @@ minecraft v1.18.2<br>
 - **/ostore create {id} {元価格} {ストック} {変化幅}** 
 - **/ostore delete {id}**
 - **/ostore list**
-- **/ostore set {baseprice} {id} {元価格}**
-- **/ostore set {buyprice} {id} {買値}**
-- **/ostore set {sellprice} {id} {売値}**
-- **/ostore set {stock} {id} {ストック}**
-- **/ostore set {change} {id} {変化幅}**
+- **/ostore set baseprice {id} {元価格}**
+- **/ostore set buyprice {id} {買値}**
+- **/ostore set sellprice {id} {売値}**
+- **/ostore set stock {id} {ストック}**
+- **/ostore set change {id} {変化幅}**
 - **/ostore set expression {id} {SELL_PLUS} {expression}**
 - **/ostore set expression {id} {SELL_SUBTRACT} {expression}**
+- **/ostore set increase {id} {true | false}**
 
 ## 追加予定
 
 - **/ostore run ....** の追加
 - 看板での売買の追加
-- ホログラムでアイテム観察の追加
