@@ -2,12 +2,14 @@ package com.github.tanokun.onestore.commands
 
 import com.github.tanokun.onestore.db
 import com.github.tanokun.onestore.shop.Shop
+import com.github.tanokun.onestore.shop.createShopHologram
 import com.github.tanokun.onestore.shop.inv.ShopListInv
 import com.github.tanokun.onestore.shopManager
 import dev.jorel.commandapi.CommandAPICommand
 import dev.jorel.commandapi.CommandPermission
 import dev.jorel.commandapi.arguments.*
 import dev.jorel.commandapi.executors.PlayerCommandExecutor
+import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
@@ -19,7 +21,7 @@ class StoreCommand {
     }
 
     private fun store() {
-        CommandAPICommand("ostore")
+        CommandAPICommand("ostore").withAliases("ost")
             .withPermission(CommandPermission.OP)
             .withSubcommand(run())
             .withSubcommand(create())
@@ -60,7 +62,7 @@ class StoreCommand {
                     return@PlayerCommandExecutor
                 }
 
-                shopManager.shops[id] = Shop(id, item, basePrice, stock, change)
+                shopManager.shops[id] = Shop(id, item, basePrice, stock, change, true)
                 player.sendMessage("§b新しく「${id}」を作成しました")
             })
     }
@@ -79,7 +81,9 @@ class StoreCommand {
                 }
 
                 shopManager.shops.remove(id)
+                shopManager.holograms.remove(id)
                 db.deleteShop(id)
+                db.deleteHologramLocation(id)
                 player.sendMessage("§bショップ「${id}」を削除しました")
             })
     }
@@ -118,7 +122,7 @@ class StoreCommand {
                         return@PlayerCommandExecutor
                     }
 
-                    shop.buyPrice = price
+                    shop.buyPrice = price.toDouble()
 
                     player.sendMessage("§b「${id}」の買値を「${price}」に変更しました")
 
@@ -136,9 +140,27 @@ class StoreCommand {
                         return@PlayerCommandExecutor
                     }
 
-                    shop.sellPrice = price
+                    shop.sellPrice = price.toDouble()
 
-                    player.sendMessage("§b「${id}」の買値を「${price}」に変更しました")
+                    player.sendMessage("§b「${id}」の売値を「${price}」に変更しました")
+
+                }))
+            .withSubcommand(CommandAPICommand("increase").withFullDescription("シフト購入を可能にするかを変更します")
+                .withArguments(idArg)
+                .withArguments(BooleanArgument("true | false"))
+                .executesPlayer(PlayerCommandExecutor { player: Player, args: Array<Any> ->
+                    val id = args[0] as String
+                    val i = args[1] as Boolean
+                    val shop = shopManager.shops[id]
+
+                    if (shop == null) {
+                        player.sendMessage("§cそのショップは存在しません")
+                        return@PlayerCommandExecutor
+                    }
+
+                    shop.increase = i
+
+                    player.sendMessage("§b「${id}」のシフト購入を「${i}」にしました")
 
                 }))
             .withSubcommand(CommandAPICommand("stock").withFullDescription("ストックを変更します")
@@ -193,12 +215,31 @@ class StoreCommand {
                     }
 
                     when (type) {
-                        "SELL_PLUS" -> shop.sellExpressionPlus = "n - n * 0.01"
-                        "SELL_SUBTRACT" -> shop.sellExpressionSubtract = "n - n * 0.01"
+                        "SELL_PLUS" -> shop.expressionPlus = "n - n * 0.01"
+                        "SELL_SUBTRACT" -> shop.expressionSubtract = "n - n * 0.01"
                     }
 
                     player.sendMessage("§b「${id}」の計算式(${type})を「${expression}」に変更しました")
 
+                }))
+            .withSubcommand(CommandAPICommand("hologram").withFullDescription("ホログラムを変更します")
+                .withArguments(idArg)
+                .withArguments(LocationArgument("holo"))
+                .executesPlayer(PlayerCommandExecutor { player: Player, args: Array<Any> ->
+                    val id = args[0] as String
+                    val location = args[1] as Location
+                    val shop = shopManager.shops[id]
+
+                    if (shop == null) {
+                        player.sendMessage("§cそのショップは存在しません")
+                        return@PlayerCommandExecutor
+                    }
+
+                    shopManager.holograms[id]?.second?.delete()
+
+                    shopManager.holograms[id] = location to createShopHologram(shop, location)
+
+                    player.sendMessage("§bホログラムを変更しました。")
                 }))
 
     }
