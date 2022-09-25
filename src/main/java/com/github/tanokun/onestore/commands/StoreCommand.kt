@@ -236,10 +236,11 @@ class StoreCommand {
                     }
 
                     shopManager.holograms[id]?.second?.delete()
+
                     val holo = createShopHologram(shop, location)
 
-                    shopManager.holograms[id] = location to holo
                     shopManager.lHolograms[location] = shop to holo
+                    shopManager.holograms[id] = location to holo
 
                     player.sendMessage("§bホログラムを変更しました。")
                 }))
