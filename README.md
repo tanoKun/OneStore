@@ -6,10 +6,12 @@ minecraft v1.18.2<br>
 ### authors: [tanokun](https://github.com/tanoKun)
 
 ## Depend (Plugin)
- - [CommandAPI](https://github.com/JorelAli/CommandAPI)
- - [Jecon](https://github.com/HimaJyun/Jecon)
+- [CommandAPI v8.5.1](https://github.com/JorelAli/CommandAPI)
+- [Jecon v2.2.1](https://github.com/HimaJyun/Jecon)
+- [HolographicDisplay v3.0.0-SNAPSHOT](https://dev.bukkit.org/projects/holographic-displays/files/3686457)
 
 ## Libraries
+ - **HolographicDisplay** 3.0.0-SNAPSHOT
  - **Jecon** 2.2.1
  - **CommandAPI** 8.5.1
  - **HikariCP** 5.0.1
