@@ -236,7 +236,6 @@ class StoreCommand {
                     }
 
                     shopManager.holograms[id]?.second?.delete()
-
                     val holo = createShopHologram(shop, location)
 
                     shopManager.holograms[id] = location to holo
